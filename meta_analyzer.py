@@ -48,6 +48,11 @@ SPECIAL_SAFETY_MULT = 1.0
 BASE_POWER = 80
 POWER_CAST_PENALTY = 0.005  # 0.5% slower per power point above 80
 
+# AoE Size vs Power
+# Higher power AoE = larger radius = easier to hit multiple targets
+# But also slower cast = can be dodged
+AOE_SIZE_SCALING = 0.01  # 1% larger AoE per power point above base
+
 # =============================================================================
 # POKEMON SIZE (affects movement speed - larger = slower, easier to hit)
 # =============================================================================
@@ -441,16 +446,26 @@ def get_best_moves(pokemon_types, is_physical):
     best_moves = []
 
     def calc_effective_power(power, is_aoe, is_multi_hit, is_stab):
-        """Calculate effective power considering cast time penalty"""
+        """Calculate effective power considering cast time penalty and AoE size scaling"""
         eff_power = power
 
         # STAB bonus
         if is_stab:
             eff_power *= 1.5
 
-        # AoE bonus (can hit 3 enemies)
+        # AoE calculation with size scaling
         if is_aoe:
-            eff_power *= 1.3
+            # Base AoE bonus (can hit 3 enemies)
+            aoe_bonus = 1.3
+            # Higher power = larger AoE radius = easier to hit
+            if power > BASE_POWER:
+                aoe_size_bonus = 1.0 + (power - BASE_POWER) * AOE_SIZE_SCALING
+                aoe_bonus *= min(1.5, aoe_size_bonus)  # Cap at 50% extra
+            elif power < BASE_POWER:
+                # Smaller AoE = harder to hit multiple targets
+                aoe_size_penalty = 1.0 - (BASE_POWER - power) * 0.005
+                aoe_bonus *= max(0.8, aoe_size_penalty)
+            eff_power *= aoe_bonus
 
         # Multi-hit penalty (can be dodged between hits)
         if is_multi_hit:

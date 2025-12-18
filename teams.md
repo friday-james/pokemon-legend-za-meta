@@ -160,12 +160,14 @@ Based on meta analysis considering: AoE potential, size, range safety, burst dam
 
 | If opponent has... | Counter with... |
 |--------------------|-----------------|
-| Water spam | Vaporeon (absorb), Grass coverage |
+| Water spam | Grass coverage, Electric types |
 | Dragon spam | Sylveon, Xerneas, any Fairy |
-| Ground spam | Flying types, Levitate (if allowed) |
+| Ground spam | Flying types (immune to EQ) |
 | Kyogre | Grass coverage, Rindo Berry |
 | Groudon | Water AoE (Kyogre hard counters) |
 | Rayquaza | Fairy types (Delta Stream doesn't help vs Fairy) |
+
+**Note**: Abilities like Water Absorb, Levitate do NOT work in this game (except Rayquaza's Delta Stream from item/innate).
 
 ---
 
