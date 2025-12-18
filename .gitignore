@@ -43,3 +43,6 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
+
+# Pokemon sprite cache (regenerate with image_crawler.py)
+images/

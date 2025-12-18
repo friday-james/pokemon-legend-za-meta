@@ -42,6 +42,12 @@ PHYSICAL_SAFETY_MULT = 0.6
 SPECIAL_SPEED_MULT = 0.7
 SPECIAL_SAFETY_MULT = 1.0
 
+# Power vs Cast Time trade-off
+# Higher power moves take longer to cast (can be dodged/interrupted)
+# Base cast time at 80 power, scales up with power
+BASE_POWER = 80
+POWER_CAST_PENALTY = 0.005  # 0.5% slower per power point above 80
+
 # =============================================================================
 # POKEMON SIZE (affects movement speed - larger = slower, easier to hit)
 # =============================================================================
@@ -53,10 +59,12 @@ POKEMON_SIZE = {
     "Wailord": 5, "Steelix": 5, "Melmetal": 5,
     # Large (4) - Slow, notable hitbox
     "Tyranitar": 4, "Metagross": 4, "Salamence": 4, "Dragonite": 4, "Garchomp": 4,
-    "Gyarados": 4, "Aggron": 4, "Mewtwo": 4, "Xerneas": 4, "Yveltal": 4,
+    "Gyarados": 4, "Aggron": 4, "Xerneas": 4, "Yveltal": 4,
     "Goodra": 4, "Goodra-Hisui": 4, "Baxcalibur": 4, "Volcanion": 4,
     "Corviknight": 4, "Feraligatr": 4, "Swampert": 4, "Hoopa": 4,
+    "Clefable": 4,  # Large in-game model
     # Medium (3) - Average
+    "Mewtwo": 3,  # Medium sized, not large
     "Blastoise": 3, "Charizard": 3, "Venusaur": 3, "Slowbro": 3, "Slowking": 3,
     "Machamp": 3, "Milotic": 3, "Blaziken": 3, "Lucario": 3, "Gallade": 3,
     "Gardevoir": 3, "Magearna": 3, "Genesect": 3, "Armarouge": 3, "Ceruledge": 3,
@@ -66,7 +74,7 @@ POKEMON_SIZE = {
     "Marshadow": 3, "Darkrai": 3,
     # Small (2) - Fast, hard to hit
     "Greninja": 2, "Zeraora": 2, "Sylveon": 2, "Vaporeon": 2, "Jolteon": 2,
-    "Flareon": 2, "Espeon": 2, "Glaceon": 2, "Umbreon": 2, "Clefable": 2,
+    "Flareon": 2, "Espeon": 2, "Glaceon": 2, "Umbreon": 2,
     "Tinkaton": 2, "Glimmora": 2, "Eelektross": 2,
     # Tiny (1) - Very fast, very hard to hit
     "Dedenne": 1, "Clefairy": 1,
@@ -381,10 +389,41 @@ def calculate_type_weaknesses(type1, type2=None):
 
 def get_best_moves(pokemon_types, is_physical):
     """Get best moves for a Pokemon based on its type and attack style
-    Returns: list of (move_name, type, effective_power, is_aoe, is_multi_hit, role)
+    Returns: list of (move_name, type, effective_power, is_aoe, is_multi_hit, role, raw_power)
+
+    Power vs Cast Time: Higher power = longer cast = easier to dodge
+    Sweet spot is medium power moves (80-100) that balance damage and speed
     """
     moves = PHYSICAL_MOVES if is_physical else SPECIAL_MOVES
     best_moves = []
+
+    def calc_effective_power(power, is_aoe, is_multi_hit, is_stab):
+        """Calculate effective power considering cast time penalty"""
+        eff_power = power
+
+        # STAB bonus
+        if is_stab:
+            eff_power *= 1.5
+
+        # AoE bonus (can hit 3 enemies)
+        if is_aoe:
+            eff_power *= 1.3
+
+        # Multi-hit penalty (can be dodged between hits)
+        if is_multi_hit:
+            eff_power *= 0.5
+
+        # Cast time penalty for high power moves
+        # Higher power = longer cast = more dodgeable
+        if power > BASE_POWER:
+            cast_penalty = 1.0 - (power - BASE_POWER) * POWER_CAST_PENALTY
+            eff_power *= max(0.7, cast_penalty)  # Cap at 30% penalty
+        elif power < BASE_POWER:
+            # Slight bonus for faster low-power moves
+            cast_bonus = 1.0 + (BASE_POWER - power) * 0.002
+            eff_power *= min(1.1, cast_bonus)
+
+        return eff_power
 
     # STAB moves first
     for ptype in pokemon_types:
@@ -392,13 +431,8 @@ def get_best_moves(pokemon_types, is_physical):
             for move_data in moves[ptype]:
                 if isinstance(move_data, tuple) and len(move_data) == 4:
                     move, power, is_aoe, is_multi_hit = move_data
-                    # Calculate effective power
-                    eff_power = power * 1.5  # STAB bonus
-                    if is_aoe:
-                        eff_power *= 1.3  # AoE bonus (can hit 3 enemies)
-                    if is_multi_hit:
-                        eff_power *= 0.5  # Multi-hit penalty (can be dodged)
-                    best_moves.append((move, ptype, eff_power, is_aoe, is_multi_hit, "STAB"))
+                    eff_power = calc_effective_power(power, is_aoe, is_multi_hit, is_stab=True)
+                    best_moves.append((move, ptype, eff_power, is_aoe, is_multi_hit, "STAB", power))
 
     # Coverage moves
     for ctype in ["Ice", "Fighting", "Ground", "Fire", "Electric", "Ghost", "Dark"]:
@@ -408,10 +442,8 @@ def get_best_moves(pokemon_types, is_physical):
                     move, power, is_aoe, is_multi_hit = move_data
                     if is_multi_hit:
                         continue  # Skip multi-hit moves for coverage
-                    eff_power = power
-                    if is_aoe:
-                        eff_power *= 1.3
-                    best_moves.append((move, ctype, eff_power, is_aoe, is_multi_hit, "Coverage"))
+                    eff_power = calc_effective_power(power, is_aoe, is_multi_hit, is_stab=False)
+                    best_moves.append((move, ctype, eff_power, is_aoe, is_multi_hit, "Coverage", power))
                     break  # Only one per type
 
     return sorted(best_moves, key=lambda x: x[2], reverse=True)[:6]

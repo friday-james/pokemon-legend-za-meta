@@ -2,6 +2,8 @@
 
 A meta analysis tool for a custom Pokemon real-time 4-player battle royale game mode.
 
+![Tier List](tierlist.png)
+
 ## Disclaimer
 
 **The data and analysis in this repository may not be accurate.** The game mechanics modeled here are approximations and do not fully reflect the actual in-game mechanics. This analysis is for reference purposes only and should not be taken as definitive meta guidance.
@@ -39,7 +41,8 @@ Key limitations:
 |-----------|--------|----------|
 | **AoE** | Hits multiple enemies = GOOD | Earthquake, Surf, Heat Wave |
 | **Multi-hit** | Multiple hits on same target = BAD (dodgeable) | Scale Shot, Triple Axel |
-| **Single-hit** | Instant burst = GOOD for kill-stealing | Hydro Pump, Draco Meteor |
+| **High Power** | More damage but LONGER cast time (dodgeable) | Draco Meteor, Eruption |
+| **Medium Power** | Sweet spot - balanced damage and cast speed | Surf, Thunderbolt, Ice Beam |
 
 | Size | Movement | Hitbox | Risk |
 |------|----------|--------|------|
@@ -57,37 +60,40 @@ Key limitations:
 | Pokemon | Type | Size | Key Strengths |
 |---------|------|------|---------------|
 | Primal Kyogre | Water | Huge | Best AoE (Origin Pulse, Surf), 180 SpA burst |
+| Volcanion | Fire/Water | Large | Eruption + Origin Pulse AoE combo |
 
 ### A Tier
 | Pokemon | Type | Size | Key Strengths |
 |---------|------|------|---------------|
-| Volcanion | Fire/Water | Large | Eruption + Origin Pulse AoE combo |
 | Primal Groudon | Ground/Fire | Huge | Earthquake AoE, 180 Atk burst |
 | Keldeo | Water/Fighting | Medium | Water AoE + good size balance |
 | Vaporeon | Water | Small | Small hitbox + AoE + bulk |
-| Greninja | Water/Dark | Small | Fastest mobility (146), small hitbox |
+| Greninja | Water/Dark | Small | Fastest mobility, small hitbox |
 | Milotic | Water | Medium | Balanced stats + Water AoE |
+| Xerneas | Fairy | Large | Fairy AoE, Dragon immunity |
+| Heatran | Fire/Steel | Medium | Heat Wave AoE, Poison immunity |
+| Blastoise | Water | Medium | Water AoE, balanced bulk |
 
 ### B Tier
 | Pokemon | Type | Size | Key Strengths |
 |---------|------|------|---------------|
-| Xerneas | Fairy | Large | Fairy AoE, Dragon immunity |
-| Toxtricity | Electric/Poison | Medium | Discharge AoE |
-| Heatran | Fire/Steel | Medium | Heat Wave AoE, Poison immunity |
-| Slowbro/Slowking | Water/Psychic | Medium | Water AoE, decent bulk |
 | Armarouge | Fire/Psychic | Medium | Fire AoE moves |
-| Charizard | Fire/Flying | Medium | Eruption + Heat Wave AoE |
 | Darkrai | Dark | Medium | Fast + ranged + Psychic immunity |
 | Sylveon | Fairy | Small | Small hitbox + Dragon immunity |
+| Charizard | Fire/Flying | Medium | Heat Wave AoE |
+| Excadrill | Ground/Steel | Medium | Earthquake AoE (physical) |
+| Mewtwo | Psychic | Medium | High SpA, ranged, fast |
+| Clefable | Fairy | Large | Fairy AoE, Dragon immunity |
+| Garchomp | Dragon/Ground | Large | Earthquake AoE, burst damage |
 
 ### C Tier
 | Pokemon | Type | Size | Key Strengths |
 |---------|------|------|---------------|
-| Clefable | Fairy | Small | Small hitbox, Dragon immunity |
-| Jolteon | Electric | Small | Fast + small + Discharge AoE |
-| Glaceon | Ice | Small | Blizzard AoE + small hitbox |
-| Mewtwo | Psychic | Large | High burst but large target |
-| Excadrill | Ground/Steel | Medium | Earthquake AoE (physical) |
+| Zygarde | Dragon/Ground | Huge | Earthquake AoE, bulk (4x Ice) |
+| Slowbro/Slowking | Water/Psychic | Medium | Water AoE, decent bulk |
+| Gholdengo | Steel/Ghost | Medium | Immunities, ranged |
+| Yveltal | Dark/Flying | Large | Dark AoE, Psychic/Ground immunity |
+| Magearna | Steel/Fairy | Medium | Dragon immunity, bulk |
 
 ---
 
