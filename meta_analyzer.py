@@ -100,20 +100,47 @@ ITEMS = {
     "Wide Lens": {"effect": "accuracy", "value": 1.1, "description": "+10% accuracy"},
     "Scope Lens": {"effect": "crit", "value": 1.5, "description": "+crit rate"},
     "Shell Bell": {"effect": "lifesteal", "value": 0.125, "description": "Heal on damage"},
+    # Type-resist berries (negate super effective ONCE per spawn)
+    "Yache Berry": {"effect": "resist_once", "type": "Ice", "description": "Resist Ice once"},
+    "Shuca Berry": {"effect": "resist_once", "type": "Ground", "description": "Resist Ground once"},
+    "Charti Berry": {"effect": "resist_once", "type": "Rock", "description": "Resist Rock once"},
+    "Chople Berry": {"effect": "resist_once", "type": "Fighting", "description": "Resist Fighting once"},
+    "Kasib Berry": {"effect": "resist_once", "type": "Ghost", "description": "Resist Ghost once"},
+    "Haban Berry": {"effect": "resist_once", "type": "Dragon", "description": "Resist Dragon once"},
+    "Colbur Berry": {"effect": "resist_once", "type": "Dark", "description": "Resist Dark once"},
+    "Roseli Berry": {"effect": "resist_once", "type": "Fairy", "description": "Resist Fairy once"},
+    "Occa Berry": {"effect": "resist_once", "type": "Fire", "description": "Resist Fire once"},
+    "Passho Berry": {"effect": "resist_once", "type": "Water", "description": "Resist Water once"},
+    "Rindo Berry": {"effect": "resist_once", "type": "Grass", "description": "Resist Grass once"},
+    "Wacan Berry": {"effect": "resist_once", "type": "Electric", "description": "Resist Electric once"},
+}
+
+# Pokemon with special abilities that work in this game
+SPECIAL_ABILITIES = {
+    # Rayquaza's Delta Stream: Flying-type loses weaknesses to Ice, Electric, Rock
+    "Rayquaza": {"ability": "Delta Stream", "effect": "remove_flying_weakness"},
 }
 
 ITEM_SYNERGIES = {
-    "Groudon": ["Red Orb", "Life Orb", "Assault Vest"],
+    "Groudon": ["Red Orb", "Passho Berry", "Assault Vest"],  # 4x Water
     "Kyogre": ["Blue Orb", "Life Orb", "Assault Vest"],
     "Magearna": ["Assault Vest", "Leftovers", "Life Orb"],
     "Mewtwo": ["Life Orb", "Expert Belt", "Focus Sash"],
     "Goodra": ["Assault Vest", "Leftovers", "Life Orb"],
     "Goodra-Hisui": ["Assault Vest", "Leftovers", "Life Orb"],
     "Metagross": ["Assault Vest", "Life Orb", "Expert Belt"],
-    "Tyranitar": ["Assault Vest", "Life Orb", "Leftovers"],
-    "Dragonite": ["Life Orb", "Expert Belt", "Assault Vest"],
-    "Salamence": ["Life Orb", "Expert Belt", "Assault Vest"],
-    "Garchomp": ["Life Orb", "Expert Belt", "Rocky Helmet"],
+    "Tyranitar": ["Assault Vest", "Chople Berry", "Life Orb"],  # 4x Fighting
+    "Dragonite": ["Yache Berry", "Life Orb", "Assault Vest"],  # 4x Ice
+    "Salamence": ["Yache Berry", "Life Orb", "Assault Vest"],  # 4x Ice
+    "Garchomp": ["Yache Berry", "Life Orb", "Expert Belt"],  # 4x Ice
+    "Rayquaza": ["Life Orb", "Expert Belt", "Assault Vest"],  # Delta Stream removes 4x Ice!
+    "Zygarde": ["Yache Berry", "Leftovers", "Assault Vest"],  # 4x Ice
+    "Baxcalibur": ["Haban Berry", "Life Orb", "Assault Vest"],  # 4x weakness options
+    "Charizard": ["Charti Berry", "Life Orb", "Expert Belt"],  # 4x Rock
+    "Volcanion": ["Shuca Berry", "Life Orb", "Assault Vest"],  # 4x Ground (if not for unique typing)
+    "Heatran": ["Shuca Berry", "Assault Vest", "Life Orb"],  # 4x Ground
+    "Toxtricity": ["Shuca Berry", "Life Orb", "Expert Belt"],  # 4x Ground
+    "Swampert": ["Rindo Berry", "Assault Vest", "Life Orb"],  # 4x Grass
 }
 
 PRIMAL_STATS = {
@@ -363,9 +390,18 @@ PHYSICAL_MOVES = {
 # HELPER FUNCTIONS
 # =============================================================================
 
-def calculate_type_weaknesses(type1, type2=None):
-    """Calculate all type weaknesses, resistances, and immunities"""
+def calculate_type_weaknesses(type1, type2=None, pokemon_name=None):
+    """Calculate all type weaknesses, resistances, and immunities
+    Also considers special abilities like Rayquaza's Delta Stream
+    """
     weaknesses, resistances, immunities = {}, {}, set()
+
+    # Check for special abilities
+    has_delta_stream = False
+    if pokemon_name and pokemon_name in SPECIAL_ABILITIES:
+        ability = SPECIAL_ABILITIES[pokemon_name]
+        if ability.get("effect") == "remove_flying_weakness":
+            has_delta_stream = True
 
     for attack_type in TYPE_DEFENSE.keys():
         mult = 1.0
@@ -377,6 +413,13 @@ def calculate_type_weaknesses(type1, type2=None):
             if attack_type in TYPE_DEFENSE[type2]["weak"]: mult *= 2
             elif attack_type in TYPE_DEFENSE[type2]["resist"]: mult *= 0.5
             elif attack_type in TYPE_DEFENSE[type2]["immune"]: mult = 0
+
+        # Delta Stream: Flying-type loses weakness to Ice, Electric, Rock
+        if has_delta_stream and type2 == "Flying":
+            if attack_type in ["Ice", "Electric", "Rock"]:
+                # Remove the 2x from Flying weakness
+                if mult >= 2:
+                    mult /= 2  # Neutralize the Flying weakness portion
 
         if mult == 0: immunities.add(attack_type)
         elif mult >= 4: weaknesses[attack_type] = 4
@@ -542,8 +585,8 @@ def comprehensive_score(pokemon_name, base_stats, item_name=None):
     # Get best moves
     best_moves = get_best_moves(types, is_physical)
 
-    # Calculate sub-scores
-    weaknesses, resistances, immunities = calculate_type_weaknesses(types[0], types[1])
+    # Calculate sub-scores (pass pokemon_name for special abilities like Delta Stream)
+    weaknesses, resistances, immunities = calculate_type_weaknesses(types[0], types[1], pokemon_name)
 
     burst = calculate_burst_score(stats, is_physical)
     mobility = calculate_mobility_score(stats, pokemon_name)
@@ -554,6 +597,13 @@ def comprehensive_score(pokemon_name, base_stats, item_name=None):
     size = POKEMON_SIZE.get(pokemon_name, DEFAULT_SIZE)
     size_names = {1: "Tiny", 2: "Small", 3: "Medium", 4: "Large", 5: "Huge"}
 
+    # Check if using a resist berry (reduces 4x weakness impact)
+    has_resist_berry = False
+    if item_name and ITEMS.get(item_name, {}).get("effect") == "resist_once":
+        berry_type = ITEMS[item_name].get("type")
+        if berry_type in weaknesses:
+            has_resist_berry = True
+
     # Range/safety score
     if is_physical:
         range_safety = 40  # Must approach = risky in 4-player
@@ -563,7 +613,16 @@ def comprehensive_score(pokemon_name, base_stats, item_name=None):
     # Type coverage score
     type_score = len(resistances) * 5 + len(immunities) * 15 - len(weaknesses) * 10
     four_x_penalty = sum(50 for m in weaknesses.values() if m == 4)
+    # Berry reduces 4x weakness penalty (can survive one hit)
+    if has_resist_berry and four_x_penalty > 0:
+        four_x_penalty *= 0.5  # Berry halves the penalty
     type_score -= four_x_penalty
+
+    # Special ability bonus
+    ability_bonus = 0
+    has_special_ability = pokemon_name in SPECIAL_ABILITIES
+    if has_special_ability:
+        ability_bonus = 30  # Delta Stream etc. are very valuable
 
     # Item bonus
     item = ITEMS.get(item_name, {})
@@ -585,7 +644,8 @@ def comprehensive_score(pokemon_name, base_stats, item_name=None):
         mobility * WEIGHTS['mobility'] * 1.0 +
         survivability * WEIGHTS['survivability'] * 1.2 +
         type_score * WEIGHTS['type_matchup'] +
-        item_bonus
+        item_bonus +
+        ability_bonus  # Special abilities like Delta Stream
     )
 
     # Determine best item if not specified
@@ -596,6 +656,9 @@ def comprehensive_score(pokemon_name, base_stats, item_name=None):
 
     has_4x = any(m == 4 for m in weaknesses.values())
     four_x_types = [t for t, m in weaknesses.items() if m == 4]
+
+    # Get special ability info
+    special_ability = SPECIAL_ABILITIES.get(pokemon_name, {}).get("ability", None)
 
     return {
         'name': pokemon_name,
@@ -615,6 +678,8 @@ def comprehensive_score(pokemon_name, base_stats, item_name=None):
         'immunities': immunities,
         'has_4x': has_4x,
         'four_x_types': four_x_types,
+        'has_resist_berry': has_resist_berry,
+        'special_ability': special_ability,
         'is_legendary': pokemon_name in LEGENDARY_POKEMON,
         'item': item_name,
         'item_desc': item.get("description", ""),

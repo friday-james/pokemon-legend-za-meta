@@ -9,12 +9,13 @@ import os
 import csv
 
 # Tier list configuration (based on meta_analyzer.py output)
+# Updated with: Berries counter 4x weakness once, Rayquaza Delta Stream
 TIERS = {
-    "S": {"color": (255, 127, 127), "pokemon": ["kyogre", "volcanion"]},
-    "A": {"color": (255, 191, 127), "pokemon": ["groudon", "keldeo", "vaporeon", "greninja", "milotic", "xerneas", "heatran", "blastoise"]},
-    "B": {"color": (255, 255, 127), "pokemon": ["armarouge", "darkrai", "sylveon", "charizard", "excadrill", "mewtwo", "clefable", "garchomp", "glimmora", "jolteon", "toxtricity", "glaceon", "gardevoir", "espeon"]},
-    "C": {"color": (191, 255, 127), "pokemon": ["zygarde", "swampert", "slowbro", "slowking", "gholdengo", "yveltal", "magearna", "genesect", "dragalge", "lucario", "latios", "latias"]},
-    "D": {"color": (127, 255, 255), "pokemon": ["rayquaza", "hoopa", "zeraora", "marshadow", "goodra", "noivern", "cobalion", "terrakion", "virizion", "blaziken", "gallade", "ceruledge"]},
+    "S": {"color": (255, 127, 127), "pokemon": ["kyogre"]},
+    "A": {"color": (255, 191, 127), "pokemon": ["groudon", "volcanion", "keldeo", "vaporeon", "greninja", "milotic", "xerneas", "blastoise"]},
+    "B": {"color": (255, 255, 127), "pokemon": ["armarouge", "darkrai", "sylveon", "excadrill", "mewtwo", "clefable", "glimmora", "jolteon", "rayquaza", "glaceon", "gardevoir", "espeon", "slowbro", "slowking", "gholdengo"]},
+    "C": {"color": (191, 255, 127), "pokemon": ["yveltal", "magearna", "heatran", "genesect", "dragalge", "lucario", "latios", "latias", "toxtricity", "charizard"]},
+    "D": {"color": (127, 255, 255), "pokemon": ["garchomp", "zygarde", "swampert", "hoopa", "zeraora", "marshadow", "goodra", "noivern", "cobalion", "terrakion", "virizion", "blaziken", "gallade", "ceruledge"]},
     "F": {"color": (200, 200, 200), "pokemon": ["tyranitar", "dragonite", "salamence", "annihilape", "baxcalibur", "dondozo", "melmetal", "steelix", "aggron", "corviknight", "feraligatr", "metagross", "scizor", "umbreon"]},
 }
 
