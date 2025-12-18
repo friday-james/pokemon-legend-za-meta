@@ -39,7 +39,7 @@ Key limitations:
 
 | Move Type | Effect | Examples |
 |-----------|--------|----------|
-| **AoE** | Hits multiple enemies = GOOD | Earthquake, Surf, Heat Wave |
+| **AoE** | Hits one area, can catch 1-3 grouped enemies | Earthquake, Surf, Heat Wave |
 | **Multi-hit** | Multiple hits on same target = BAD (dodgeable) | Scale Shot, Triple Axel |
 | **High Power** | More damage but LONGER cast time (dodgeable) | Draco Meteor, Eruption |
 | **Medium Power** | Sweet spot - balanced damage and cast speed | Surf, Thunderbolt, Ice Beam |
@@ -125,8 +125,8 @@ Key limitations:
 ### Why Special Attackers Dominate
 In a 4-player battle royale, approaching to use physical attacks exposes you to third-party attacks from 2 other players. Special attackers can snipe from safety.
 
-### Why AoE is Premium
-With 3 enemies on the field, AoE moves effectively deal 3x damage output. Excellent for kill-stealing when others are fighting.
+### Why AoE is Valuable
+AoE hits one area - people can still dodge. But when enemies are fighting each other and grouped up, you can catch 1-3 targets. Larger AoE (high power moves like Eruption) covers more area. Excellent for kill-stealing when others are battling.
 
 ### Why Size Matters
 Larger Pokemon are easier targets in chaotic 4-player fights. Smaller Pokemon can dodge and avoid being focused.

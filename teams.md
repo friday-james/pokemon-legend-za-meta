@@ -137,7 +137,7 @@ Based on meta analysis considering: AoE potential, size, range safety, burst dam
 ## Team Building Tips
 
 ### Must-Have Roles
-1. **AoE Damage** - At least 2 Pokemon with AoE moves
+1. **AoE Damage** - At least 2 Pokemon with AoE moves (for catching grouped enemies)
 2. **Dragon Answer** - Fairy-type or Ice coverage
 3. **Speed Variety** - Mix of fast (snipe) and bulky (sustain)
 

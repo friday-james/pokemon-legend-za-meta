@@ -32,7 +32,7 @@ WEIGHTS = {
     'survivability': 0.10,     # Survive third-party attacks
     'type_matchup': 0.05,      # Type coverage
 }
-# NOTE: AoE = GOOD (hits multiple enemies), Multi-hit = BAD (can dodge between hits)
+# NOTE: AoE = valuable (hits one area, can catch grouped enemies), Multi-hit = BAD (can dodge between hits)
 
 # Physical vs Special trade-off
 # Physical: 1.3x cast speed multiplier (fast) but 0.6x safety (must approach)
@@ -49,9 +49,11 @@ BASE_POWER = 80
 POWER_CAST_PENALTY = 0.005  # 0.5% slower per power point above 80
 
 # AoE Size vs Power
-# Higher power AoE = larger radius = easier to hit multiple targets
+# Higher power AoE = larger radius = more likely to hit clustered enemies
 # But also slower cast = can be dodged
-AOE_SIZE_SCALING = 0.01  # 1% larger AoE per power point above base
+# AoE doesn't guarantee multi-hit - enemies can still dodge, hits one area only
+# Average hits: 1-2 enemies (when grouped fighting), sometimes 3 if clustered
+AOE_SIZE_SCALING = 0.008  # 0.8% larger AoE per power point above base
 
 # =============================================================================
 # POKEMON SIZE (affects movement speed - larger = slower, easier to hit)
@@ -341,7 +343,7 @@ META_ATTACK_TYPES = {
 # =============================================================================
 # HIGH-POWER MOVES (for burst damage calculation)
 # In real-time:
-#   - AoE = GOOD (hits multiple enemies at once)
+#   - AoE = valuable (hits one area, can catch 1-3 enemies if grouped/fighting)
 #   - Multi-hit = BAD (same target, multiple hits = can dodge between)
 #   - Single big hit = GOOD (instant burst for kill-steal)
 # =============================================================================
@@ -454,17 +456,20 @@ def get_best_moves(pokemon_types, is_physical):
             eff_power *= 1.5
 
         # AoE calculation with size scaling
+        # AoE hits one area - doesn't auto-hit everyone, people can dodge
+        # Avg case: 1-2 targets when enemies are grouped/fighting
+        # Best case: 3 targets if cramped together
         if is_aoe:
-            # Base AoE bonus (can hit 3 enemies)
-            aoe_bonus = 1.3
-            # Higher power = larger AoE radius = easier to hit
+            # Base AoE bonus (average 1.5 targets, not guaranteed)
+            aoe_bonus = 1.15
+            # Higher power = larger AoE radius = more likely to catch grouped enemies
             if power > BASE_POWER:
                 aoe_size_bonus = 1.0 + (power - BASE_POWER) * AOE_SIZE_SCALING
-                aoe_bonus *= min(1.5, aoe_size_bonus)  # Cap at 50% extra
+                aoe_bonus *= min(1.3, aoe_size_bonus)  # Cap at 30% extra
             elif power < BASE_POWER:
                 # Smaller AoE = harder to hit multiple targets
-                aoe_size_penalty = 1.0 - (BASE_POWER - power) * 0.005
-                aoe_bonus *= max(0.8, aoe_size_penalty)
+                aoe_size_penalty = 1.0 - (BASE_POWER - power) * 0.004
+                aoe_bonus *= max(0.85, aoe_size_penalty)
             eff_power *= aoe_bonus
 
         # Multi-hit penalty (can be dodged between hits)
@@ -559,8 +564,9 @@ def calculate_survivability(stats, weaknesses, pokemon_name):
 
 
 def calculate_aoe_score(moves):
-    """Calculate AoE potential for hitting multiple players
-    AoE = GOOD (hits 3 enemies at once)
+    """Calculate AoE potential for hitting clustered enemies
+    AoE = hits one area, average 1-2 targets when enemies fight each other
+    Best case: 3 targets if cramped together
     Multi-hit = BAD (penalized in move selection already)
     """
     aoe_score = 0
@@ -571,8 +577,8 @@ def calculate_aoe_score(moves):
             is_multi_hit = move_data[4]
             eff_power = move_data[2]
             if is_aoe and not is_multi_hit:
-                # AoE bonus: hits 3 enemies = 3x value for kill potential
-                aoe_score += eff_power * 0.8
+                # AoE bonus: potential to hit grouped enemies during fights
+                aoe_score += eff_power * 0.6
     return aoe_score
 
 
@@ -894,10 +900,12 @@ KEY INSIGHTS:
    - Slower cast time is offset by ranged advantage
    - In 4-player, approaching makes you vulnerable to 3rd party attacks
 
-2. AOE MOVES ARE PREMIUM (different from multi-hit!)
-   - AoE = hits multiple enemies at once = GOOD
+2. AOE MOVES ARE VALUABLE (different from multi-hit!)
+   - AoE = hits one area, people can still dodge
+   - Best when enemies are grouped/fighting = avg 1-2 hits, up to 3 if cramped
+   - Larger AoE (high power) = easier to catch grouped enemies
+   - Earthquake, Surf, Heat Wave, Discharge = good AoE options
    - Multi-hit = same target, multiple hits = BAD (can dodge between)
-   - Earthquake, Surf, Heat Wave, Discharge = premium AoE
    - Scale Shot, Triple Axel, Dual Wingbeat = BAD multi-hit
 
 3. PHYSICAL ATTACKERS ARE RISKY
