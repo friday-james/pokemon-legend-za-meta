@@ -10,21 +10,110 @@ import csv
 
 # Tier list configuration (based on meta_analyzer.py output)
 # Updated with: AoE size scales with power (Eruption = huge radius)
+# Format: (pokemon_name, recommended_item)
 TIERS = {
-    "S": {"color": (255, 127, 127), "pokemon": ["kyogre", "volcanion"]},
-    "A": {"color": (255, 191, 127), "pokemon": ["groudon", "armarouge", "keldeo", "vaporeon", "greninja", "milotic", "blastoise", "slowbro", "slowking", "xerneas", "heatran"]},
-    "B": {"color": (255, 255, 127), "pokemon": ["charizard", "sylveon", "darkrai", "mewtwo", "glimmora", "clefable", "glaceon", "jolteon", "rayquaza", "toxtricity", "gardevoir", "excadrill"]},
-    "C": {"color": (191, 255, 127), "pokemon": ["espeon", "gholdengo", "yveltal", "magearna", "genesect", "dragalge", "lucario", "latios", "latias"]},
-    "D": {"color": (127, 255, 255), "pokemon": ["garchomp", "zygarde", "swampert", "hoopa", "zeraora", "marshadow", "goodra", "noivern", "cobalion", "terrakion", "virizion", "blaziken", "gallade", "ceruledge"]},
-    "F": {"color": (200, 200, 200), "pokemon": ["tyranitar", "dragonite", "salamence", "annihilape", "baxcalibur", "dondozo", "melmetal", "steelix", "aggron", "corviknight", "feraligatr", "metagross", "scizor", "umbreon"]},
+    "S": {"color": (255, 127, 127), "pokemon": [
+        ("kyogre", "Blue Orb"),
+        ("volcanion", "Life Orb"),
+    ]},
+    "A": {"color": (255, 191, 127), "pokemon": [
+        ("groudon", "Red Orb"),
+        ("armarouge", "Life Orb"),
+        ("keldeo", "Life Orb"),
+        ("vaporeon", "Life Orb"),
+        ("greninja", "Assault Vest"),
+        ("milotic", "Assault Vest"),
+        ("blastoise", "Assault Vest"),
+        ("slowbro", "Assault Vest"),
+        ("slowking", "Assault Vest"),
+        ("xerneas", "Life Orb"),
+        ("heatran", "Shuca Berry"),
+    ]},
+    "B": {"color": (255, 255, 127), "pokemon": [
+        ("charizard", "Charti Berry"),
+        ("sylveon", "Assault Vest"),
+        ("darkrai", "Life Orb"),
+        ("mewtwo", "Life Orb"),
+        ("glimmora", "Shuca Berry"),
+        ("clefable", "Life Orb"),
+        ("glaceon", "Life Orb"),
+        ("jolteon", "Life Orb"),
+        ("rayquaza", "Life Orb"),
+        ("toxtricity", "Shuca Berry"),
+        ("gardevoir", "Focus Sash"),
+        ("excadrill", "Life Orb"),
+    ]},
+    "C": {"color": (191, 255, 127), "pokemon": [
+        ("espeon", "Life Orb"),
+        ("gholdengo", "Assault Vest"),
+        ("yveltal", "Life Orb"),
+        ("magearna", "Assault Vest"),
+        ("genesect", "Occa Berry"),
+        ("dragalge", "Assault Vest"),
+        ("lucario", "Life Orb"),
+        ("latios", "Life Orb"),
+        ("latias", "Assault Vest"),
+    ]},
+    "D": {"color": (127, 255, 255), "pokemon": [
+        ("garchomp", "Yache Berry"),
+        ("zygarde", "Yache Berry"),
+        ("swampert", "Rindo Berry"),
+        ("hoopa", "Kasib Berry"),
+        ("zeraora", "Life Orb"),
+        ("marshadow", "Life Orb"),
+        ("goodra", "Assault Vest"),
+        ("noivern", "Life Orb"),
+        ("cobalion", "Shuca Berry"),
+        ("terrakion", "Chople Berry"),
+        ("virizion", "Life Orb"),
+        ("blaziken", "Life Orb"),
+        ("gallade", "Focus Sash"),
+        ("ceruledge", "Life Orb"),
+    ]},
+    "F": {"color": (200, 200, 200), "pokemon": [
+        ("tyranitar", "Chople Berry"),
+        ("dragonite", "Yache Berry"),
+        ("salamence", "Yache Berry"),
+        ("annihilape", "Assault Vest"),
+        ("baxcalibur", "Life Orb"),
+        ("dondozo", "Assault Vest"),
+        ("melmetal", "Assault Vest"),
+        ("steelix", "Shuca Berry"),
+        ("aggron", "Shuca Berry"),
+        ("corviknight", "Rocky Helmet"),
+        ("feraligatr", "Life Orb"),
+        ("metagross", "Assault Vest"),
+        ("scizor", "Occa Berry"),
+        ("umbreon", "Leftovers"),
+    ]},
 }
 
 # Image settings
 SPRITE_SIZE = 68
+ITEM_LABEL_HEIGHT = 14
 TIER_LABEL_WIDTH = 60
 PADDING = 4
-SPRITES_PER_ROW = 10
+SPRITES_PER_ROW = 8  # Reduced to fit item labels
 IMAGE_DIR = "images"
+
+# Item short names for display
+ITEM_SHORT = {
+    "Blue Orb": "BlueOrb",
+    "Red Orb": "RedOrb",
+    "Life Orb": "LifeOrb",
+    "Assault Vest": "AV",
+    "Focus Sash": "Sash",
+    "Yache Berry": "Yache",
+    "Shuca Berry": "Shuca",
+    "Charti Berry": "Charti",
+    "Chople Berry": "Chople",
+    "Kasib Berry": "Kasib",
+    "Occa Berry": "Occa",
+    "Rindo Berry": "Rindo",
+    "Rocky Helmet": "Helmet",
+    "Leftovers": "Lefties",
+    "Expert Belt": "ExBelt",
+}
 
 def load_sprite(pokemon_name, size=SPRITE_SIZE):
     """Load and resize a Pokemon sprite"""
@@ -54,47 +143,65 @@ def load_sprite(pokemon_name, size=SPRITE_SIZE):
 
 
 def create_tier_row(tier_name, tier_data, width):
-    """Create a single tier row"""
+    """Create a single tier row with item labels"""
     pokemon_list = tier_data["pokemon"]
     color = tier_data["color"]
 
     # Calculate rows needed
     num_pokemon = len(pokemon_list)
     rows_needed = max(1, (num_pokemon + SPRITES_PER_ROW - 1) // SPRITES_PER_ROW)
-    row_height = SPRITE_SIZE + PADDING * 2
+    cell_height = SPRITE_SIZE + ITEM_LABEL_HEIGHT + PADDING * 2
 
     # Create row image
-    total_height = rows_needed * row_height
+    total_height = rows_needed * cell_height
     row_img = Image.new('RGB', (width, total_height), (40, 40, 40))
     draw = ImageDraw.Draw(row_img)
 
     # Draw tier label background
     draw.rectangle([0, 0, TIER_LABEL_WIDTH, total_height], fill=color)
 
-    # Draw tier label text
+    # Load fonts
     try:
-        font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 32)
+        tier_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 32)
+        item_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 9)
     except:
-        font = ImageFont.load_default()
+        tier_font = ImageFont.load_default()
+        item_font = ImageFont.load_default()
 
     # Center the tier letter
-    bbox = draw.textbbox((0, 0), tier_name, font=font)
+    bbox = draw.textbbox((0, 0), tier_name, font=tier_font)
     text_width = bbox[2] - bbox[0]
     text_height = bbox[3] - bbox[1]
     text_x = (TIER_LABEL_WIDTH - text_width) // 2
     text_y = (total_height - text_height) // 2
-    draw.text((text_x, text_y), tier_name, fill=(0, 0, 0), font=font)
+    draw.text((text_x, text_y), tier_name, fill=(0, 0, 0), font=tier_font)
 
-    # Draw Pokemon sprites
-    for i, pokemon in enumerate(pokemon_list):
+    # Draw Pokemon sprites with item labels
+    for i, entry in enumerate(pokemon_list):
+        # Handle both old format (string) and new format (tuple)
+        if isinstance(entry, tuple):
+            pokemon, item = entry
+        else:
+            pokemon, item = entry, ""
+
         row = i // SPRITES_PER_ROW
         col = i % SPRITES_PER_ROW
 
         x = TIER_LABEL_WIDTH + PADDING + col * (SPRITE_SIZE + PADDING)
-        y = PADDING + row * row_height
+        y = PADDING + row * cell_height
 
+        # Draw sprite
         sprite = load_sprite(pokemon)
         row_img.paste(sprite, (x, y), sprite)
+
+        # Draw item label below sprite
+        if item:
+            item_short = ITEM_SHORT.get(item, item[:8])
+            item_bbox = draw.textbbox((0, 0), item_short, font=item_font)
+            item_width = item_bbox[2] - item_bbox[0]
+            item_x = x + (SPRITE_SIZE - item_width) // 2
+            item_y = y + SPRITE_SIZE + 1
+            draw.text((item_x, item_y), item_short, fill=(200, 200, 200), font=item_font)
 
     return row_img
 
