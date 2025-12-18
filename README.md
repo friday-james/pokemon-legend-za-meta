@@ -142,9 +142,12 @@ In 4-player, someone WILL have coverage. Zygarde's 4x Ice weakness makes it easy
 |------|-------------|
 | `meta_analyzer.py` | Main analysis script |
 | `meta_analysis.csv` | Generated tier list and scores |
+| `teams.md` | **Recommended teams & usage tiers** |
+| `tierlist.png` | Visual tier list image |
 | `pokemon_crawler.py` | Serebii.net data scraper |
 | `pokemon_movesets.csv` | Pokemon moveset summary |
-| `pokemon_movesets_detailed.csv` | Detailed move data |
+| `image_crawler.py` | Pokemon sprite downloader |
+| `tierlist_generator.py` | Tier list image generator |
 
 ## Usage
 
