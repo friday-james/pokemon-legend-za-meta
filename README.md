@@ -26,6 +26,7 @@ Key limitations:
 - **Pokemon can respawn**
 - **3 Pokemon per team**, max 1 legendary
 - **Items allowed** (no duplicates on team)
+- **Mega evolutions allowed** (requires Mega Stone item)
 - **No native abilities** (item abilities like Primal forms OK)
 - **No priority moves**
 
@@ -36,6 +37,7 @@ Key limitations:
 | Cast Speed | Fast | Slow |
 | Range | Must approach target | Ranged (safe) |
 | Risk | High (can be ganked) | Low |
+| Gap Closers | Some moves help close distance safely (Fly, Dig, Brave Bird) | N/A |
 
 | Move Type | Effect | Examples |
 |-----------|--------|----------|

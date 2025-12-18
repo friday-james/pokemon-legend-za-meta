@@ -63,13 +63,16 @@ AOE_SIZE_SCALING = 0.008  # 0.8% larger AoE per power point above base
 POKEMON_SIZE = {
     # Huge (5) - Very slow, easy target
     "Groudon": 5, "Kyogre": 5, "Rayquaza": 5, "Zygarde": 5, "Dondozo": 5,
-    "Wailord": 5, "Steelix": 5, "Melmetal": 5,
+    "Wailord": 5, "Steelix": 5, "Melmetal": 5, "Rayquaza-Mega": 5,
     # Large (4) - Slow, notable hitbox
     "Tyranitar": 4, "Metagross": 4, "Salamence": 4, "Dragonite": 4, "Garchomp": 4,
     "Gyarados": 4, "Aggron": 4, "Xerneas": 4, "Yveltal": 4,
     "Goodra": 4, "Goodra-Hisui": 4, "Baxcalibur": 4, "Volcanion": 4,
     "Corviknight": 4, "Feraligatr": 4, "Swampert": 4, "Hoopa": 4,
     "Clefable": 4,  # Large in-game model
+    # Mega evolutions - Large
+    "Tyranitar-Mega": 4, "Metagross-Mega": 4, "Salamence-Mega": 4, "Garchomp-Mega": 4,
+    "Gyarados-Mega": 4, "Swampert-Mega": 4, "Mewtwo-Mega-X": 4, "Mewtwo-Mega-Y": 3,
     # Medium (3) - Average
     "Mewtwo": 3,  # Medium sized, not large
     "Blastoise": 3, "Charizard": 3, "Venusaur": 3, "Slowbro": 3, "Slowking": 3,
@@ -158,6 +161,97 @@ PRIMAL_STATS = {
 PRIMAL_TYPES = {
     "Groudon": ("Ground", "Fire"),
     "Kyogre": ("Water", None),
+}
+
+# Mega Evolution Data
+MEGA_STATS = {
+    # (HP, Atk, Def, SpA, SpD, Spe)
+    "Charizard-Mega-X": (78, 130, 111, 130, 85, 100),  # Dragon/Fire
+    "Charizard-Mega-Y": (78, 104, 78, 159, 115, 100),  # Fire/Flying
+    "Blastoise-Mega": (79, 103, 120, 135, 115, 78),   # Water
+    "Mewtwo-Mega-X": (106, 190, 100, 154, 100, 130),  # Psychic/Fighting
+    "Mewtwo-Mega-Y": (106, 150, 70, 194, 120, 140),   # Psychic
+    "Tyranitar-Mega": (100, 164, 150, 95, 120, 71),   # Rock/Dark
+    "Salamence-Mega": (95, 145, 130, 120, 90, 120),   # Dragon/Flying
+    "Metagross-Mega": (80, 145, 150, 105, 110, 110),  # Steel/Psychic
+    "Garchomp-Mega": (108, 170, 115, 120, 95, 92),    # Dragon/Ground
+    "Lucario-Mega": (70, 145, 88, 140, 70, 112),      # Fighting/Steel
+    "Scizor-Mega": (70, 150, 140, 65, 100, 75),       # Bug/Steel
+    "Gyarados-Mega": (95, 155, 109, 70, 130, 81),     # Water/Dark
+    "Blaziken-Mega": (80, 160, 80, 130, 80, 100),     # Fire/Fighting
+    "Swampert-Mega": (100, 150, 110, 95, 110, 70),    # Water/Ground
+    "Gardevoir-Mega": (68, 85, 65, 165, 135, 100),    # Psychic/Fairy
+    "Gallade-Mega": (68, 165, 95, 65, 115, 110),      # Psychic/Fighting
+    "Latios-Mega": (80, 130, 100, 160, 120, 110),     # Dragon/Psychic
+    "Latias-Mega": (80, 100, 120, 140, 150, 110),     # Dragon/Psychic
+    "Rayquaza-Mega": (105, 180, 100, 180, 100, 115),  # Dragon/Flying (via Dragon Ascent)
+}
+
+MEGA_TYPES = {
+    "Charizard-Mega-X": ("Fire", "Dragon"),
+    "Charizard-Mega-Y": ("Fire", "Flying"),
+    "Blastoise-Mega": ("Water", None),
+    "Mewtwo-Mega-X": ("Psychic", "Fighting"),
+    "Mewtwo-Mega-Y": ("Psychic", None),
+    "Tyranitar-Mega": ("Rock", "Dark"),
+    "Salamence-Mega": ("Dragon", "Flying"),
+    "Metagross-Mega": ("Steel", "Psychic"),
+    "Garchomp-Mega": ("Dragon", "Ground"),
+    "Lucario-Mega": ("Fighting", "Steel"),
+    "Scizor-Mega": ("Bug", "Steel"),
+    "Gyarados-Mega": ("Water", "Dark"),
+    "Blaziken-Mega": ("Fire", "Fighting"),
+    "Swampert-Mega": ("Water", "Ground"),
+    "Gardevoir-Mega": ("Psychic", "Fairy"),
+    "Gallade-Mega": ("Psychic", "Fighting"),
+    "Latios-Mega": ("Dragon", "Psychic"),
+    "Latias-Mega": ("Dragon", "Psychic"),
+    "Rayquaza-Mega": ("Dragon", "Flying"),
+}
+
+MEGA_ITEMS = {
+    "Charizard-Mega-X": "Charizardite X",
+    "Charizard-Mega-Y": "Charizardite Y",
+    "Blastoise-Mega": "Blastoisinite",
+    "Mewtwo-Mega-X": "Mewtwonite X",
+    "Mewtwo-Mega-Y": "Mewtwonite Y",
+    "Tyranitar-Mega": "Tyranitarite",
+    "Salamence-Mega": "Salamencite",
+    "Metagross-Mega": "Metagrossite",
+    "Garchomp-Mega": "Garchompite",
+    "Lucario-Mega": "Lucarionite",
+    "Scizor-Mega": "Scizorite",
+    "Gyarados-Mega": "Gyaradosite",
+    "Blaziken-Mega": "Blazikenite",
+    "Swampert-Mega": "Swampertite",
+    "Gardevoir-Mega": "Gardevoirite",
+    "Gallade-Mega": "Galladite",
+    "Latios-Mega": "Latiosite",
+    "Latias-Mega": "Latiasite",
+    "Rayquaza-Mega": "Dragon Ascent",  # No item needed, just the move
+}
+
+# Base Pokemon for each mega
+MEGA_BASE = {
+    "Charizard-Mega-X": "Charizard",
+    "Charizard-Mega-Y": "Charizard",
+    "Blastoise-Mega": "Blastoise",
+    "Mewtwo-Mega-X": "Mewtwo",
+    "Mewtwo-Mega-Y": "Mewtwo",
+    "Tyranitar-Mega": "Tyranitar",
+    "Salamence-Mega": "Salamence",
+    "Metagross-Mega": "Metagross",
+    "Garchomp-Mega": "Garchomp",
+    "Lucario-Mega": "Lucario",
+    "Scizor-Mega": "Scizor",
+    "Gyarados-Mega": "Gyarados",
+    "Blaziken-Mega": "Blaziken",
+    "Swampert-Mega": "Swampert",
+    "Gardevoir-Mega": "Gardevoir",
+    "Gallade-Mega": "Gallade",
+    "Latios-Mega": "Latios",
+    "Latias-Mega": "Latias",
+    "Rayquaza-Mega": "Rayquaza",
 }
 
 # =============================================================================
@@ -372,25 +466,27 @@ SPECIAL_MOVES = {
 }
 
 PHYSICAL_MOVES = {
-    # AoE physical = good, Multi-hit = bad (Scale Shot, Dual Wingbeat, Triple Axel = BAD)
-    "Dragon": [("Outrage", 120, False, False), ("Dragon Claw", 80, False, False), ("Glaive Rush", 120, False, False), ("Scale Shot", 75, False, True)],  # Scale Shot = multi-hit BAD
-    "Fighting": [("Close Combat", 120, False, False), ("Superpower", 120, False, False), ("Drain Punch", 75, False, False)],
-    "Ground": [("Earthquake", 100, True, False), ("Precipice Blades", 120, True, False), ("Bulldoze", 60, True, False), ("High Horsepower", 95, False, False)],
-    "Steel": [("Meteor Mash", 90, False, False), ("Iron Head", 80, False, False), ("Heavy Slam", 100, False, False)],
-    "Rock": [("Rock Slide", 75, True, False), ("Stone Edge", 100, False, False), ("Head Smash", 150, False, False)],
-    "Dark": [("Knock Off", 97, False, False), ("Crunch", 80, False, False), ("Throat Chop", 80, False, False)],
-    "Fire": [("Flare Blitz", 120, False, False), ("Fire Punch", 75, False, False)],
-    "Ice": [("Icicle Crash", 85, False, False), ("Ice Punch", 75, False, False), ("Triple Axel", 120, False, True)],  # Triple Axel = multi-hit BAD
-    "Ghost": [("Poltergeist", 110, False, False), ("Phantom Force", 90, False, False), ("Shadow Claw", 70, False, False)],
-    "Bug": [("Megahorn", 120, False, False), ("X-Scissor", 80, False, False), ("Lunge", 80, False, False)],
-    "Flying": [("Brave Bird", 120, False, False), ("Acrobatics", 110, False, False), ("Dual Wingbeat", 80, False, True)],  # Dual Wingbeat = multi-hit BAD
-    "Electric": [("Wild Charge", 90, False, False), ("Thunder Punch", 75, False, False)],
-    "Grass": [("Wood Hammer", 120, False, False), ("Leaf Blade", 90, False, False), ("Power Whip", 120, False, False), ("Bullet Seed", 75, False, True)],  # Bullet Seed = multi-hit BAD
-    "Poison": [("Gunk Shot", 120, False, False), ("Poison Jab", 80, False, False)],
-    "Psychic": [("Zen Headbutt", 80, False, False)],
-    "Fairy": [("Play Rough", 90, False, False)],
-    "Water": [("Wave Crash", 120, False, False), ("Liquidation", 85, False, False), ("Waterfall", 80, False, False)],
-    "Normal": [("Double-Edge", 120, False, False), ("Body Slam", 85, False, False), ("Return", 102, False, False)],
+    # Format: (Move, Power, is_aoe, is_multi_hit, is_gap_closer)
+    # Gap closers: moves that help close distance safely (Dig, Fly, Phantom Force, etc.)
+    # AoE physical = good, Multi-hit = bad, Gap closer = safer approach
+    "Dragon": [("Outrage", 120, False, False, False), ("Dragon Claw", 80, False, False, False), ("Glaive Rush", 120, False, False, True), ("Scale Shot", 75, False, True, False)],
+    "Fighting": [("Close Combat", 120, False, False, False), ("Superpower", 120, False, False, False), ("Drain Punch", 75, False, False, False)],
+    "Ground": [("Earthquake", 100, True, False, False), ("Precipice Blades", 120, True, False, False), ("Bulldoze", 60, True, False, False), ("High Horsepower", 95, False, False, False), ("Dig", 80, False, False, True)],
+    "Steel": [("Meteor Mash", 90, False, False, False), ("Iron Head", 80, False, False, False), ("Heavy Slam", 100, False, False, True)],  # Heavy Slam = gap closer (body slam style)
+    "Rock": [("Rock Slide", 75, True, False, False), ("Stone Edge", 100, False, False, False), ("Head Smash", 150, False, False, True)],  # Head Smash = charge in
+    "Dark": [("Knock Off", 97, False, False, False), ("Crunch", 80, False, False, False), ("Throat Chop", 80, False, False, False), ("Sucker Punch", 70, False, False, True)],
+    "Fire": [("Flare Blitz", 120, False, False, True), ("Fire Punch", 75, False, False, False)],  # Flare Blitz = charge in
+    "Ice": [("Icicle Crash", 85, False, False, False), ("Ice Punch", 75, False, False, False), ("Triple Axel", 120, False, True, False)],
+    "Ghost": [("Poltergeist", 110, False, False, False), ("Phantom Force", 90, False, False, True), ("Shadow Claw", 70, False, False, False)],  # Phantom Force = vanish then hit
+    "Bug": [("Megahorn", 120, False, False, False), ("X-Scissor", 80, False, False, False), ("Lunge", 80, False, False, True)],  # Lunge = gap closer
+    "Flying": [("Brave Bird", 120, False, False, True), ("Acrobatics", 110, False, False, True), ("Fly", 90, False, False, True), ("Dual Wingbeat", 80, False, True, False)],  # Flying moves = gap closers
+    "Electric": [("Wild Charge", 90, False, False, True), ("Thunder Punch", 75, False, False, False)],  # Wild Charge = charge in
+    "Grass": [("Wood Hammer", 120, False, False, False), ("Leaf Blade", 90, False, False, False), ("Power Whip", 120, False, False, False), ("Bullet Seed", 75, False, True, False)],
+    "Poison": [("Gunk Shot", 120, False, False, False), ("Poison Jab", 80, False, False, False)],
+    "Psychic": [("Zen Headbutt", 80, False, False, True)],  # Headbutt = charge in
+    "Fairy": [("Play Rough", 90, False, False, False)],
+    "Water": [("Wave Crash", 120, False, False, True), ("Liquidation", 85, False, False, False), ("Waterfall", 80, False, False, True), ("Aqua Jet", 40, False, False, True)],  # Wave Crash/Waterfall = charge in
+    "Normal": [("Double-Edge", 120, False, False, True), ("Body Slam", 85, False, False, True), ("Return", 102, False, False, False), ("Extreme Speed", 80, False, False, True)],
 }
 
 # =============================================================================
@@ -447,8 +543,8 @@ def get_best_moves(pokemon_types, is_physical):
     moves = PHYSICAL_MOVES if is_physical else SPECIAL_MOVES
     best_moves = []
 
-    def calc_effective_power(power, is_aoe, is_multi_hit, is_stab):
-        """Calculate effective power considering cast time penalty and AoE size scaling"""
+    def calc_effective_power(power, is_aoe, is_multi_hit, is_stab, is_gap_closer=False, is_physical=False):
+        """Calculate effective power considering cast time penalty, AoE size scaling, and gap closer"""
         eff_power = power
 
         # STAB bonus
@@ -476,6 +572,11 @@ def get_best_moves(pokemon_types, is_physical):
         if is_multi_hit:
             eff_power *= 0.5
 
+        # Gap closer bonus for physical moves (Dig, Fly, Phantom Force, Body Slam, etc.)
+        # These moves help close distance safely, reducing the risk of physical attacks
+        if is_gap_closer and is_physical:
+            eff_power *= 1.2  # 20% bonus for safer approach
+
         # Cast time penalty for high power moves
         # Higher power = longer cast = more dodgeable
         if power > BASE_POWER:
@@ -492,21 +593,25 @@ def get_best_moves(pokemon_types, is_physical):
     for ptype in pokemon_types:
         if ptype and ptype in moves:
             for move_data in moves[ptype]:
-                if isinstance(move_data, tuple) and len(move_data) == 4:
-                    move, power, is_aoe, is_multi_hit = move_data
-                    eff_power = calc_effective_power(power, is_aoe, is_multi_hit, is_stab=True)
-                    best_moves.append((move, ptype, eff_power, is_aoe, is_multi_hit, "STAB", power))
+                if isinstance(move_data, tuple) and len(move_data) >= 4:
+                    move, power, is_aoe, is_multi_hit = move_data[:4]
+                    is_gap_closer = move_data[4] if len(move_data) > 4 else False
+                    eff_power = calc_effective_power(power, is_aoe, is_multi_hit, is_stab=True,
+                                                     is_gap_closer=is_gap_closer, is_physical=is_physical)
+                    best_moves.append((move, ptype, eff_power, is_aoe, is_multi_hit, "STAB", power, is_gap_closer))
 
     # Coverage moves
     for ctype in ["Ice", "Fighting", "Ground", "Fire", "Electric", "Ghost", "Dark"]:
         if ctype in moves and ctype not in pokemon_types:
             for move_data in moves[ctype]:
-                if isinstance(move_data, tuple) and len(move_data) == 4:
-                    move, power, is_aoe, is_multi_hit = move_data
+                if isinstance(move_data, tuple) and len(move_data) >= 4:
+                    move, power, is_aoe, is_multi_hit = move_data[:4]
+                    is_gap_closer = move_data[4] if len(move_data) > 4 else False
                     if is_multi_hit:
                         continue  # Skip multi-hit moves for coverage
-                    eff_power = calc_effective_power(power, is_aoe, is_multi_hit, is_stab=False)
-                    best_moves.append((move, ctype, eff_power, is_aoe, is_multi_hit, "Coverage", power))
+                    eff_power = calc_effective_power(power, is_aoe, is_multi_hit, is_stab=False,
+                                                     is_gap_closer=is_gap_closer, is_physical=is_physical)
+                    best_moves.append((move, ctype, eff_power, is_aoe, is_multi_hit, "Coverage", power, is_gap_closer))
                     break  # Only one per type
 
     return sorted(best_moves, key=lambda x: x[2], reverse=True)[:6]
@@ -708,6 +813,83 @@ def comprehensive_score(pokemon_name, base_stats, item_name=None):
     }
 
 
+def comprehensive_score_mega(pokemon_name, base_stats, types, item_name, is_legendary):
+    """Calculate comprehensive score for mega evolutions"""
+    stats = list(base_stats)
+
+    # Determine physical vs special
+    is_physical = stats[1] > stats[3]
+
+    # Get best moves
+    best_moves = get_best_moves(types, is_physical)
+
+    # Calculate sub-scores
+    weaknesses, resistances, immunities = calculate_type_weaknesses(types[0], types[1], pokemon_name)
+
+    burst = calculate_burst_score(stats, is_physical)
+    mobility = calculate_mobility_score(stats, pokemon_name)
+    survivability = calculate_survivability(stats, weaknesses, pokemon_name)
+    aoe = calculate_aoe_score(best_moves)
+
+    # Get size for display
+    size = POKEMON_SIZE.get(pokemon_name, DEFAULT_SIZE)
+    size_names = {1: "Tiny", 2: "Small", 3: "Medium", 4: "Large", 5: "Huge"}
+
+    # Range/safety score
+    if is_physical:
+        range_safety = 40  # Must approach = risky in 4-player
+    else:
+        range_safety = 100  # Ranged = safe positioning
+
+    # Type coverage score
+    type_score = len(resistances) * 5 + len(immunities) * 15 - len(weaknesses) * 10
+    four_x_penalty = sum(50 for m in weaknesses.values() if m == 4)
+    type_score -= four_x_penalty
+
+    # Mega stone = locked item, but gets mega boost
+    mega_bonus = 60  # Stat boost from mega evolution
+
+    # Weighted final score
+    final_score = (
+        burst * WEIGHTS['burst_damage'] * 2.5 +
+        range_safety * WEIGHTS['range_safety'] * 1.5 +
+        aoe * WEIGHTS['aoe_potential'] * 1.5 +
+        mobility * WEIGHTS['mobility'] * 1.0 +
+        survivability * WEIGHTS['survivability'] * 1.2 +
+        type_score * WEIGHTS['type_matchup'] +
+        mega_bonus
+    )
+
+    has_4x = any(m == 4 for m in weaknesses.values())
+    four_x_types = [t for t, m in weaknesses.items() if m == 4]
+
+    return {
+        'name': pokemon_name,
+        'score': final_score,
+        'stats': tuple(stats),
+        'types': types,
+        'is_physical': is_physical,
+        'size': size,
+        'size_name': size_names.get(size, "Medium"),
+        'burst': burst,
+        'mobility': mobility,
+        'survivability': survivability,
+        'range_safety': range_safety,
+        'aoe': aoe,
+        'weaknesses': weaknesses,
+        'resistances': resistances,
+        'immunities': immunities,
+        'has_4x': has_4x,
+        'four_x_types': four_x_types,
+        'has_resist_berry': False,  # Can't use berry with mega stone
+        'special_ability': None,
+        'is_legendary': is_legendary,
+        'item': item_name,
+        'item_desc': "Mega Stone",
+        'best_moves': best_moves,
+    }
+
+
 def assign_tier(score, max_score):
     """Assign tier based on score"""
     ratio = score / max_score if max_score > 0 else 0
@@ -796,6 +978,19 @@ def main():
         primal_k = comprehensive_score("Kyogre", BASE_STATS["Kyogre"], "Blue Orb")
         primal_k['name'] = "Primal Kyogre"
         pokemon_scores.append(primal_k)
+
+    # Add Mega Evolutions
+    for mega_name, mega_stats in MEGA_STATS.items():
+        mega_item = MEGA_ITEMS.get(mega_name, "Life Orb")
+        mega_types = MEGA_TYPES.get(mega_name)
+        base_name = MEGA_BASE.get(mega_name)
+
+        # Check if base Pokemon is legendary
+        is_mega_legendary = base_name in LEGENDARY_POKEMON
+
+        # Create a modified comprehensive_score for mega
+        score = comprehensive_score_mega(mega_name, mega_stats, mega_types, mega_item, is_mega_legendary)
+        pokemon_scores.append(score)
 
     sorted_pokemon = sorted(pokemon_scores, key=lambda x: x['score'], reverse=True)
     max_score = sorted_pokemon[0]['score'] if sorted_pokemon else 100
