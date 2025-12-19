@@ -2,7 +2,11 @@
 
 A meta analysis tool for a custom Pokemon real-time 4-player battle royale game mode.
 
+## Current Season: No Legendaries
+
 ![Tier List](tierlist.png)
+
+**Nash Equilibrium**: Mega Blastoise + Jolteon + Sylveon
 
 ## Disclaimer
 
@@ -24,10 +28,11 @@ Key limitations:
 - **Real-time combat** - players can dodge, snipe, and hide
 - **Kill-based scoring** - most last hits/kills wins
 - **Pokemon can respawn**
-- **3 Pokemon per team**, max 1 legendary
-- **Items allowed** (no duplicates on team)
+- **3 Pokemon per team**
+- **No legendaries allowed** (current season)
 - **Mega evolutions allowed** (requires Mega Stone item)
-- **No native abilities** (item abilities like Primal forms OK)
+- **Items allowed** (no duplicates on team)
+- **No native abilities**
 - **No priority moves**
 
 ### Key Mechanics

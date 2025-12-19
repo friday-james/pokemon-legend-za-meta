@@ -8,86 +8,59 @@ from PIL import Image, ImageDraw, ImageFont
 import os
 import csv
 
-# Tier list configuration (based on meta_analyzer.py output)
-# Updated with: AoE size scales with power (Eruption = huge radius)
+# Tier list configuration - NO LEGENDARIES SEASON
 # Format: (pokemon_name, recommended_item)
 TIERS = {
     "S": {"color": (255, 127, 127), "pokemon": [
-        ("kyogre", "Blue Orb"),
-    ]},
-    "A": {"color": (255, 191, 127), "pokemon": [
         ("blastoise-mega", "Blastoisinite"),
         ("charizard-mega-y", "Charizardite Y"),
-        ("groudon", "Red Orb"),
+    ]},
+    "A": {"color": (255, 191, 127), "pokemon": [
         ("charizard-mega-x", "Charizardite X"),
-        ("keldeo", "Life Orb"),
         ("gardevoir-mega", "Gardevoirite"),
-        ("mewtwo-mega-y", "Mewtwonite Y"),
         ("vaporeon", "Life Orb"),
         ("greninja", "Life Orb"),
         ("milotic", "Life Orb"),
-        ("xerneas", "Life Orb"),
-    ]},
-    "B": {"color": (255, 255, 127), "pokemon": [
         ("garchomp-mega", "Garchompite"),
         ("blastoise", "Life Orb"),
-        ("rayquaza-mega", "Dragon Ascent"),
         ("swampert-mega", "Swampertite"),
-        ("darkrai", "Life Orb"),
-        ("volcanion", "Shuca Berry"),
         ("armarouge", "Life Orb"),
+    ]},
+    "B": {"color": (255, 255, 127), "pokemon": [
         ("slowbro", "Life Orb"),
         ("slowking", "Life Orb"),
-        ("latios-mega", "Latiosite"),
-        ("rayquaza", "Life Orb"),
-        ("sylveon", "Life Orb"),
+        ("sylveon", "Assault Vest"),
         ("glimmora", "Shuca Berry"),
         ("jolteon", "Life Orb"),
-        ("latias-mega", "Latiasite"),
         ("glaceon", "Life Orb"),
-        ("mewtwo", "Life Orb"),
         ("clefable", "Life Orb"),
         ("gardevoir", "Life Orb"),
-        ("mewtwo-mega-x", "Mewtwonite X"),
-    ]},
-    "C": {"color": (191, 255, 127), "pokemon": [
         ("tyranitar-mega", "Tyranitarite"),
         ("excadrill", "Life Orb"),
-        ("magearna", "Assault Vest"),
-        ("salamence-mega", "Salamencite"),
+    ]},
+    "C": {"color": (191, 255, 127), "pokemon": [
         ("dragalge", "Life Orb"),
         ("espeon", "Life Orb"),
         ("toxtricity", "Shuca Berry"),
-        ("heatran", "Shuca Berry"),
         ("gholdengo", "Life Orb"),
-        ("latios", "Life Orb"),
-        ("hoopa", "Kasib Berry"),
-        ("yveltal", "Life Orb"),
-        ("genesect", "Occa Berry"),
+        ("gallade-mega", "Galladite"),
+        ("blaziken-mega", "Blazikenite"),
         ("charizard", "Charti Berry"),
+        ("lucario", "Life Orb"),
         ("lucario-mega", "Lucarionite"),
+        ("gyarados-mega", "Gyaradosite"),
     ]},
     "D": {"color": (127, 255, 255), "pokemon": [
-        ("blaziken-mega", "Blazikenite"),
-        ("gyarados-mega", "Gyaradosite"),
-        ("gallade-mega", "Galladite"),
         ("scizor-mega", "Scizorite"),
         ("metagross-mega", "Metagrossite"),
-        ("latias", "Life Orb"),
         ("goodra", "Assault Vest"),
-        ("lucario", "Life Orb"),
         ("noivern", "Life Orb"),
-        ("cobalion", "Shuca Berry"),
-        ("zygarde", "Yache Berry"),
         ("garchomp", "Yache Berry"),
         ("swampert", "Rindo Berry"),
-        ("terrakion", "Chople Berry"),
         ("tyranitar", "Chople Berry"),
+        ("salamence-mega", "Salamencite"),
     ]},
     "F": {"color": (200, 200, 200), "pokemon": [
-        ("zeraora", "Life Orb"),
-        ("melmetal", "Assault Vest"),
-        ("marshadow", "Life Orb"),
         ("ceruledge", "Life Orb"),
         ("scizor", "Occa Berry"),
         ("gallade", "Focus Sash"),
@@ -290,8 +263,8 @@ def create_tier_list():
         title_font = ImageFont.load_default()
         subtitle_font = ImageFont.load_default()
 
-    draw.text((20, 15), "Pokemon Legend ZA - 4P Battle Royale Meta", fill=(255, 255, 255), font=title_font)
-    draw.text((20, 50), "Real-time | Kill-based | AoE favored | Size matters", fill=(180, 180, 180), font=subtitle_font)
+    draw.text((20, 15), "Pokemon Legend ZA - No Legendaries Season", fill=(255, 255, 255), font=title_font)
+    draw.text((20, 50), "4P Battle Royale | Mega Allowed | Water Meta | Nash Equilibrium", fill=(180, 180, 180), font=subtitle_font)
 
     # Create tier rows
     tier_rows = []

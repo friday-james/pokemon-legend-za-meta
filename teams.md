@@ -1,158 +1,147 @@
-# Pokemon Legend ZA - Recommended Teams & Usage Tiers
+# Pokemon Legend ZA - No Legendaries Season
 
-## Usage Tier List
+## Nash Equilibrium Analysis
 
-Based on meta analysis considering: AoE potential, size, range safety, burst damage, and type matchups.
+Based on meta analysis with no legendaries allowed. Water-types dominate the meta.
 
-### OU (Overused) - Expect to see in most matches
-| Pokemon | Type | Role | Why OU |
-|---------|------|------|--------|
-| **Kyogre** | Water | AoE Nuker | Best AoE (Origin Pulse, Surf), highest SpA |
-| **Vaporeon** | Water | Bulky AoE | Small hitbox + bulk + Water AoE |
-| **Greninja** | Water/Dark | Fast Sniper | Fastest mobility, small, great AoE |
-| **Groudon** | Ground/Fire | Physical AoE | Earthquake + Precipice Blades AoE |
-| **Keldeo** | Water/Fighting | Balanced | Medium size, Water AoE, Fighting coverage |
-| **Sylveon** | Fairy | Dragon Counter | Small, Dragon immune, Dazzling Gleam AoE |
-| **Darkrai** | Dark | Fast Special | Fast, Psychic immune, Dark Pulse |
-
-### UU (Underused) - Strong but less common
-| Pokemon | Type | Role | Why UU |
-|---------|------|------|--------|
-| **Volcanion** | Fire/Water | AoE Specialist | Eruption + Steam Eruption, but Large |
-| **Xerneas** | Fairy | Tank + AoE | Dragon immune, but Large target |
-| **Milotic** | Water | Bulky AoE | Good bulk, Water AoE |
-| **Rayquaza** | Dragon/Flying | Burst + Ability | Delta Stream (no 4x Ice!), but Huge |
-| **Excadrill** | Ground/Steel | Physical AoE | Earthquake, Electric immune |
-| **Mewtwo** | Psychic | Burst Damage | High SpA, fast, but no great AoE |
-| **Armarouge** | Fire/Psychic | Fire AoE | Eruption access, medium size |
-
-### RU (Rarely Used) - Niche picks
-| Pokemon | Type | Role | Why RU |
-|---------|------|------|--------|
-| **Clefable** | Fairy | Dragon Counter | Dragon immune, but Large in-game |
-| **Jolteon** | Electric | Fast Chip | Discharge AoE, very fast, small |
-| **Glaceon** | Ice | Ice Coverage | Blizzard AoE, small hitbox |
-| **Gholdengo** | Steel/Ghost | Immunities | 3 immunities, but middling damage |
-| **Heatran** | Fire/Steel | Fire AoE | Heat Wave, but 4x Ground |
-| **Slowbro/Slowking** | Water/Psychic | Bulky | Water AoE, very slow |
-
-### NU (Never Used) - Outclassed or too risky
-| Pokemon | Type | Why NU |
-|---------|------|--------|
-| **Zygarde** | Dragon/Ground | 4x Ice, Huge, Physical only |
-| **Garchomp** | Dragon/Ground | 4x Ice, Large, Physical |
-| **Dragonite** | Dragon/Flying | 4x Ice, Large, Physical |
-| **Salamence** | Dragon/Flying | 4x Ice, Large, Physical |
-| **Tyranitar** | Rock/Dark | 4x Fighting, Large, slow |
-| **Dondozo** | Water | Huge, low SpA, too slow |
+### Meta Distribution (Top 15)
+| Type | Count | Notes |
+|------|-------|-------|
+| Water | 8 | Dominant type - Blastoise-Mega leads |
+| Psychic | 4 | Gardevoir-Mega, Slowbro/king |
+| Fire | 3 | Charizard megas, Armarouge |
+| Dragon | 2 | Garchomp-Mega, Charizard-Mega-X |
+| Fairy | 2 | Gardevoir-Mega, Sylveon |
+| Ground | 2 | Garchomp-Mega, Swampert-Mega |
 
 ---
 
-## Recommended Teams
+## Tier List
 
-### Team 1: Water Spam (Beginner Friendly)
-**Strategy**: Overwhelming Water AoE from multiple angles
+### S Tier
+| Pokemon | Item | Type | Why S Tier |
+|---------|------|------|-----------|
+| **Mega Blastoise** | Blastoisinite | Water | Best non-legendary, Water AoE, good bulk |
+| **Mega Charizard Y** | Charizardite Y | Fire/Flying | Huge Eruption AoE, ranged |
 
-| Slot | Pokemon | Item | Role |
-|------|---------|------|------|
-| Legendary | **Kyogre** | Blue Orb | Main AoE nuker |
-| Core | **Vaporeon** | Life Orb | Bulky backup AoE |
-| Flex | **Greninja** | Assault Vest | Fast cleanup/snipe |
+### A Tier
+| Pokemon | Item | Type | Why A Tier |
+|---------|------|------|-----------|
+| **Mega Charizard X** | Charizardite X | Fire/Dragon | Fire AoE, Dragon STAB |
+| **Mega Gardevoir** | Gardevoirite | Psychic/Fairy | Dragon immune, Fairy AoE |
+| **Vaporeon** | Life Orb | Water | Small hitbox, tanky, AoE |
+| **Greninja** | Life Orb | Water/Dark | Small, fastest, AoE |
+| **Milotic** | Life Orb | Water | Bulky Water AoE |
+| **Mega Garchomp** | Garchompite | Dragon/Ground | EQ AoE, burst damage |
+| **Blastoise** | Life Orb | Water | Water AoE, no mega needed |
+| **Mega Swampert** | Swampertite | Water/Ground | EQ AoE, Electric immune |
+| **Armarouge** | Life Orb | Fire/Psychic | Fire AoE specialist |
 
-**Strengths**: Consistent AoE, easy to play, small hitboxes on 2/3
-**Weaknesses**: Weak to Grass/Electric, predictable
-
----
-
-### Team 2: Balanced Meta
-**Strategy**: Cover all bases with mixed attackers
-
-| Slot | Pokemon | Item | Role |
-|------|---------|------|------|
-| Legendary | **Keldeo** | Life Orb | Water AoE + Fighting |
-| Core | **Sylveon** | Assault Vest | Dragon counter, Fairy AoE |
-| Flex | **Excadrill** | Focus Sash | Physical EQ, Electric immune |
-
-**Strengths**: Type diversity, mixed attack types, good coverage
-**Weaknesses**: No dedicated nuker
-
----
-
-### Team 3: Speed Control
-**Strategy**: Outmaneuver with small, fast Pokemon
-
-| Slot | Pokemon | Item | Role |
-|------|---------|------|------|
-| Legendary | **Darkrai** | Life Orb | Fast special, Psychic immune |
-| Core | **Greninja** | Expert Belt | Fastest, sniper |
-| Flex | **Jolteon** | Assault Vest | Discharge AoE, fastest |
-
-**Strengths**: All small hitboxes, very mobile, hard to hit
-**Weaknesses**: Lower bulk, can't trade hits
+### B Tier
+| Pokemon | Item | Type | Why B Tier |
+|---------|------|------|-----------|
+| Slowbro/Slowking | Life Orb | Water/Psychic | Water AoE, decent bulk |
+| Sylveon | Assault Vest | Fairy | Small, Dragon immune |
+| Glimmora | Shuca Berry | Rock/Poison | Small, AoE, 4x Ground |
+| Jolteon | Life Orb | Electric | Fastest, Discharge AoE |
+| Glaceon | Life Orb | Ice | Blizzard AoE |
+| Clefable | Life Orb | Fairy | Dragon immune (but large) |
+| Gardevoir | Life Orb | Psychic/Fairy | Fairy AoE |
+| Mega Tyranitar | Tyranitarite | Rock/Dark | Physical burst |
+| Excadrill | Life Orb | Ground/Steel | EQ AoE, Electric immune |
 
 ---
 
-### Team 4: Dragon Counter
-**Strategy**: Punish Dragon-type users with Fairy spam
+## Nash Equilibrium Teams
+
+### Team 1: Water Spam (Expected ~40% of meta)
+**Strategy**: Overwhelming Water AoE dominance
 
 | Slot | Pokemon | Item | Role |
 |------|---------|------|------|
-| Legendary | **Xerneas** | Life Orb | Fairy nuke, Dragon immune |
-| Core | **Sylveon** | Assault Vest | Small, Dragon immune |
-| Flex | **Gardevoir** | Focus Sash | Psychic/Fairy, Dragon immune |
+| Mega | **Mega Blastoise** | Blastoisinite | Main AoE nuker |
+| Core | **Vaporeon** | Life Orb | Bulky backup, small hitbox |
+| Flex | **Greninja** | Life Orb | Fast cleanup, small hitbox |
 
-**Strengths**: Walls all Dragons, Dazzling Gleam AoE
-**Weaknesses**: Weak to Steel/Poison
+**Strengths**: Consistent AoE, 2/3 small hitboxes
+**Weaknesses**: Weak to Electric/Grass
 
 ---
 
-### Team 5: Physical Aggro (High Risk/Reward)
-**Strategy**: Fast physical burst with EQ spam
+### Team 2: Counter-Meta (Punish Water spam)
+**Strategy**: Electric to punish Water, Fairy for coverage
 
 | Slot | Pokemon | Item | Role |
 |------|---------|------|------|
-| Legendary | **Groudon** | Red Orb | Primal EQ spam |
-| Core | **Excadrill** | Life Orb | Secondary EQ |
-| Flex | **Garchomp** | Yache Berry | Dragon + Ground coverage |
+| Mega | **Mega Gardevoir** | Gardevoirite | Fairy burst, Dragon immune |
+| Core | **Jolteon** | Life Orb | Discharge AoE vs Water |
+| Flex | **Armarouge** | Life Orb | Fire AoE, Psychic coverage |
 
+**Strengths**: Counters Water meta, all small/medium
+**Weaknesses**: Weak to Ground (Excadrill)
+
+---
+
+### Team 3: Balanced Mixed
+**Strategy**: Cover all bases with type diversity
+
+| Slot | Pokemon | Item | Role |
+|------|---------|------|------|
+| Mega | **Mega Gardevoir** | Gardevoirite | Fairy/Psychic burst |
+| Core | **Milotic** | Life Orb | Bulky Water AoE |
+| Flex | **Excadrill** | Focus Sash | Ground AoE, Electric immune |
+
+**Strengths**: Type diversity, mixed attack styles
+**Weaknesses**: No dedicated counter to Water
+
+---
+
+### Team 4: Physical Aggro (High Risk/Reward)
+**Strategy**: Gap closers and EQ spam
+
+| Slot | Pokemon | Item | Role |
+|------|---------|------|------|
+| Mega | **Mega Garchomp** | Garchompite | EQ AoE, burst |
+| Core | **Mega Swampert** | Swampertite | EQ, Electric immune |
+| Flex | **Mega Blaziken** | Blazikenite | Flare Blitz gap closer |
+
+**Note**: Can only use ONE mega - pick based on matchup
 **Strengths**: Massive physical burst, EQ hits everyone
-**Weaknesses**: Must approach (risky), 2/3 have 4x weakness
+**Weaknesses**: 4x Ice on Garchomp, must approach = risky
 
 ---
 
-### Team 6: Ability Abuse
-**Strategy**: Leverage Rayquaza's Delta Stream
+### Team 5: Small Hitbox Dodge Meta
+**Strategy**: Hard to hit, outlast and snipe
 
 | Slot | Pokemon | Item | Role |
 |------|---------|------|------|
-| Legendary | **Rayquaza** | Life Orb | Delta Stream, no 4x Ice |
-| Core | **Vaporeon** | Assault Vest | Bulky Water AoE |
-| Flex | **Sylveon** | Expert Belt | Dragon counter |
+| Core | **Vaporeon** | Life Orb | Small, tanky, AoE |
+| Core | **Sylveon** | Assault Vest | Small, Dragon immune |
+| Flex | **Jolteon** | Life Orb | Smallest, fastest, Discharge |
 
-**Strengths**: Rayquaza without 4x weakness is strong
-**Weaknesses**: Rayquaza is Huge = easy target
+**Strengths**: All small hitboxes, very mobile
+**Weaknesses**: Lower burst, no mega boost
 
 ---
 
-## Team Building Tips
+## Dominant Strategy (Nash Equilibrium)
 
-### Must-Have Roles
-1. **AoE Damage** - At least 2 Pokemon with AoE moves (for catching grouped enemies)
-2. **Dragon Answer** - Fairy-type or Ice coverage
-3. **Speed Variety** - Mix of fast (snipe) and bulky (sustain)
+**Mega Blastoise + Jolteon + Sylveon**
 
-### Avoid
-- 3 Pokemon with same 4x weakness
-- All Physical attackers (too risky)
-- All Huge Pokemon (easy targets)
-- No AoE moves (can't compete)
+| Pokemon | Item | Role |
+|---------|------|------|
+| **Mega Blastoise** | Blastoisinite | Water AoE nuke |
+| **Jolteon** | Life Orb | Electric counter to Water mirrors |
+| **Sylveon** | Assault Vest | Dragon immune, tanky |
 
-### Item Priority
-1. **Blue Orb/Red Orb** - If using Kyogre/Groudon
-2. **Life Orb** - Best for damage dealers
-3. **Yache/Shuca Berry** - For 4x weak Pokemon
-4. **Assault Vest** - For bulky special attackers
-5. **Focus Sash** - For glass cannons
+**Why this is optimal**:
+- Covers Water (Blastoise) + Electric (Jolteon) + Fairy (Sylveon)
+- All special attackers = ranged safety
+- Mix of Medium + Small + Small hitboxes
+- Counters both Water spam AND Dragon threats
+- Jolteon wins Water mirrors
+- Sylveon walls any Dragon attempts
 
 ---
 
@@ -160,15 +149,21 @@ Based on meta analysis considering: AoE potential, size, range safety, burst dam
 
 | If opponent has... | Counter with... |
 |--------------------|-----------------|
-| Water spam | Grass coverage, Electric types |
-| Dragon spam | Sylveon, Xerneas, any Fairy |
-| Ground spam | Flying types (immune to EQ) |
-| Kyogre | Grass coverage, Rindo Berry |
-| Groudon | Water AoE (Kyogre hard counters) |
-| Rayquaza | Fairy types (Delta Stream doesn't help vs Fairy) |
-
-**Note**: Abilities like Water Absorb, Levitate do NOT work in this game (except Rayquaza's Delta Stream from item/innate).
+| Water spam | Jolteon, Toxtricity (Electric) |
+| Dragon types | Sylveon, Gardevoir-Mega (Fairy) |
+| Garchomp-Mega | Glaceon (4x Ice), any Ice coverage |
+| Tyranitar-Mega | Excadrill (4x Fighting from EQ) |
+| Electric counter | Excadrill (Ground immune) |
 
 ---
 
-*Note: Meta is subject to change as game mechanics are refined*
+## Expected Meta Distribution
+
+- **40%** Water-focused (Blastoise-Mega core)
+- **25%** Counter teams (Electric + Fairy)
+- **20%** Balanced mixed (Gardevoir-Mega + coverage)
+- **15%** Physical aggro (Garchomp/Swampert megas)
+
+---
+
+*Note: No legendaries allowed this season. Meta is subject to change.*
